@@ -1,0 +1,86 @@
+{%load static %}
+{% static "images" as baseUrl%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>My Certificates - Krishnendu Manna</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'Favicon.ico' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="web-name">
+                    <a href="{% url 'index' %}">KRISHNENDU MANNA</a>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="{% url 'index' %}#projects">Projects</a></li>
+                    <li><a href="{% url 'index' %}#internships">Internships</a></li>
+                    <li><a href="#" class="active">Certificates</a></li>
+                    <li><a href="{% url 'index' %}#education">Education</a></li>
+                    <li><a href="{% url 'index' %}#skills">My Skills</a></li>
+                    <li><a href="{% url 'index' %}#about-me">About Me</a></li>
+                    <li><a href="{% url 'index' %}#contact-me">Contact Me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="certificates-page-section" id="certificates-all">
+            <div class="container">
+                <div class="heading">
+                    <h2>All My Certificates</h2>
+                </div>
+                <div class="certificate-list"> <!-- Use certificate-list for grid -->
+
+                    {% for cert_only in certs_only %}
+                    <div class="card certificate-item">
+                        <img class="work-popup-img" src="{{cert_only.img.url}}"
+                            alt="{{cert_only.img_alt}}" >
+                        <div class="card-body">
+                            <h3>{{cert_only.cert_only_name}}</h3>
+                            <a href="{{cert_only.cert_only_link}}"
+                                target="_blank" class="btn">View Certificate</a>
+                        </div>
+                    </div>
+                    {%endfor%}
+                    
+                    
+
+                </div>
+
+                <div class="heading">
+                    <h2>My Other Certificates</h2>
+                </div>
+
+                <div class="certificate-list">
+                    <div class="card certificate-item">
+                        <div class="card-body">
+                            <h3>1. Google Cybersecurity Professional Certificate Course</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>
